@@ -14,7 +14,7 @@ The following request gets information about iSCSI targets of the port.
 
 ```terraform
 data "hitachi_vsp_iscsi_target" "iscsitarget" {
-  serial              = 30078
+  serial              = 12345
   port_id             = "CL4-C"
   iscsi_target_number = 1
 }
@@ -23,7 +23,7 @@ output "iscsitarget" {
   value = data.hitachi_vsp_iscsi_target.iscsitarget
 }
 data "hitachi_vsp_iscsi_targets" "iscsitargets" {
-  serial   = 30078
+  serial   = 12345
   port_ids = ["CL5-A", "CL4-C", "CL7-B"]
 }
 
@@ -44,28 +44,28 @@ output "iscsitargets" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
+- `iscsitarget` (Block List) This is output schema (see [below for nested schema](#nestedblock--iscsitarget))
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--iscsitarget"></a>
+### Nested Schema for `iscsitarget`
 
 Read-Only:
 
 - `host_mode` (String) It's host mode of the resource
 - `host_mode_options` (List of Number) It's a list of host mode options of the resource
-- `initiators` (Block List) It's a list of initiators of the resource (see [below for nested schema](#nestedblock--info--initiators))
+- `initiators` (Block List) It's a list of initiators of the resource (see [below for nested schema](#nestedblock--iscsitarget--initiators))
+- `iscsi_target_alias` (String) It's a iscsi target alias of the resource
 - `iscsi_target_id` (String) It's a iscsi target id of the resource
+- `iscsi_target_name` (String) It's a iscsi target name of the resource
 - `iscsi_target_number` (Number) It's a iscsi target number of the resource
 - `ldevs` (List of Number) It's a list of ldev ids of the resource
-- `lun_paths` (Block List) It's a list of lun_paths of the resource (see [below for nested schema](#nestedblock--info--lun_paths))
+- `lun_paths` (Block List) It's a list of lun_paths of the resource (see [below for nested schema](#nestedblock--iscsitarget--lun_paths))
 - `luns` (List of Number) It's a list of luns of the resource
 - `port_id` (String) It's a port id of the resource
-- `scsi_target_alias` (String) It's a iscsi target alias of the resource
-- `scsi_target_name` (String) It's a iscsi target name of the resource
 - `storage_serial_number` (Number) It's a storage serial number
 
-<a id="nestedblock--info--initiators"></a>
-### Nested Schema for `info.initiators`
+<a id="nestedblock--iscsitarget--initiators"></a>
+### Nested Schema for `iscsitarget.initiators`
 
 Read-Only:
 
@@ -73,8 +73,8 @@ Read-Only:
 - `initiator_nickname` (String) It's a initiator nickname of the resource
 
 
-<a id="nestedblock--info--lun_paths"></a>
-### Nested Schema for `info.lun_paths`
+<a id="nestedblock--iscsitarget--lun_paths"></a>
+### Nested Schema for `iscsitarget.lun_paths`
 
 Read-Only:
 

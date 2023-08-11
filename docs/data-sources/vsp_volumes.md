@@ -14,7 +14,7 @@ It returns all luns information from given storage device.
 
 ```terraform
 data "hitachi_vsp_volume" "volume" {
-  serial  = 40014
+  serial  = 12345
   ldev_id = 281
 }
 
@@ -22,28 +22,8 @@ output "volume" {
   value = data.hitachi_vsp_volume.volume
 }
 
-# data "hitachi_vsp_volume" "lun2" {
-#   serial  = 611039
-#   ldev_id = 2
-# }
-
-# data "hitachi_vsp_volume" "lun78" {
-#   serial  = 40014
-#   ldev_id = 78
-# }
-
-# output "lun2" {
-#   value = data.hitachi_vsp_volume.lun2
-# }
-
-# output "lun78" {
-#   value = data.hitachi_vsp_volume.lun78
-# }
-
-
-
 data "hitachi_vsp_volumes" "volume1" {
-  serial         = 40014
+  serial         = 12345
   start_ldev_id  = 280
   end_ldev_id    = 285
   undefined_ldev = false
@@ -70,16 +50,15 @@ output "volume1" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
+- `volumes` (Block List) This is output schema (see [below for nested schema](#nestedblock--volumes))
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--volumes"></a>
+### Nested Schema for `volumes`
 
 Read-Only:
 
 - `attributes` (List of String) List of attributes of volume
 - `clpr_id` (Number) It's a clpr id of volume
-- `data_reduction_mode` (String) It's data reduction mode of volume
 - `emulation_type` (String) It's a emulation type of volume
 - `free_capacity_in_mb` (Number) It shows free capacity of volume in MB
 - `is_alua_enabled` (Boolean) It checks whether alua is enabled on volume
@@ -91,7 +70,7 @@ Read-Only:
 - `num_ports` (Number) Number of ports available on volume
 - `paritygroup_id` (List of String) It's a parity group id of volume
 - `pool_id` (Number) It's a pool id of volume
-- `ports` (Block List) (see [below for nested schema](#nestedblock--info--ports))
+- `ports` (Block List) (see [below for nested schema](#nestedblock--volumes--ports))
 - `resourcegroup_id` (Number) It's a resource group id of volume
 - `ss_id` (String) It's a ss id of volume
 - `status` (String) It's status of volume
@@ -99,8 +78,8 @@ Read-Only:
 - `total_capacity_in_mb` (Number) It shows total capacity of volume in MB
 - `used_capacity_in_mb` (Number) It shows used capacity of volume in MB
 
-<a id="nestedblock--info--ports"></a>
-### Nested Schema for `info.ports`
+<a id="nestedblock--volumes--ports"></a>
+### Nested Schema for `volumes.ports`
 
 Read-Only:
 

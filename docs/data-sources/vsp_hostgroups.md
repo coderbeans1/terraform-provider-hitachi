@@ -25,12 +25,12 @@ The following request gets information about host groups of the ports.
 
 ### Read-Only
 
+- `hostgroups` (Block List) This is output schema (see [below for nested schema](#nestedblock--hostgroups))
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
 - `total_hostgroup_count` (Number) Total number of HostGroups in storage
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--hostgroups"></a>
+### Nested Schema for `hostgroups`
 
 Read-Only:
 

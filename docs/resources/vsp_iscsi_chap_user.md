@@ -19,23 +19,13 @@ The following request sets the CHAP user name for the iSCSI target. Two types of
 // cann't be changed one the resource has been created 
 
 resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
-  serial              = 30078                # mandatory input
-  port_id             = "CL4-C"              # mandatory input
-  iscsi_target_number = 01                   # mandatory input
-  chap_user_type      = "initiator"          # mandatory input. valid input value : "initiator", "target"
-  chap_user_name      = "rahul3"             # mandatory input
-  chap_user_password  = "TopSecretForMyChap" # optional input
-  #   chap_user_password = "" # optional input
-
-  lifecycle {
-    ignore_changes = [
-      serial,
-      port_id,
-      iscsi_target_number,
-      chap_user_type,
-      chap_user_name,
-    ]
-  }
+  serial              = 12345                
+  port_id             = "CL4-C"              
+  iscsi_target_number = 01                   
+  chap_user_type      = "initiator"          
+  chap_user_name      = "chapuser"           
+  chap_user_password  = "TopSecretForMyChap" 
+ 
 
 }
 ```
@@ -60,11 +50,11 @@ resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
 
 ### Read-Only
 
+- `chap_user` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_user))
 - `id` (String) The ID of this resource.
-- `info` (List of Object) This is output schema (see [below for nested schema](#nestedatt--info))
 
-<a id="nestedatt--info"></a>
-### Nested Schema for `info`
+<a id="nestedatt--chap_user"></a>
+### Nested Schema for `chap_user`
 
 Read-Only:
 

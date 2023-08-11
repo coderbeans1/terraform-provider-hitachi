@@ -26,19 +26,19 @@ The following request gets information about iSCSI targets of the ports.
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) More information about the ISCSI Target (see [below for nested schema](#nestedblock--info))
+- `iscsitargets` (Block List) More information about the ISCSI Target (see [below for nested schema](#nestedblock--iscsitargets))
 - `total_iscsi_target_count` (Number) Total number of ISCSI Target IDs which need to be fetched from the storage server
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--iscsitargets"></a>
+### Nested Schema for `iscsitargets`
 
 Read-Only:
 
 - `host_mode` (String) Host mode of the ISCSI target
+- `iscsi_target_alias` (String) ISCSI target alias of the ISCSI target
 - `iscsi_target_id` (String) ISCSI target ID of the ISCSI target
 - `iscsi_target_number` (Number) ISCSI target number of the ISCSI target
 - `port_id` (String) Port ID of the ISCSI target
-- `scsi_target_alias` (String) ISCSI target alias of the ISCSI target
 - `storage_serial_number` (Number) Storage serial number of the ISCSI target
 
 

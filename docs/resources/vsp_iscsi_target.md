@@ -14,25 +14,16 @@ The following request creates a iSCSI target and the iSCSI name for the port. Th
 
 ```terraform
 resource "hitachi_vsp_iscsi_target" "myiscsi" {
-  serial              = 30078 // REQUIRED
+  serial              = 12345
   iscsi_target_number = 1
-  scsi_target_alias   = "snewar-tgt1" // REQUIRED
-  port_id             = "CL4-C"       // REQUIRED
+  iscsi_target_alias   = "snewar-tgt1" 
+  port_id             = "CL4-C"  
 
   // For detail information about host_mode_options and host_mode, please look at the following link:
   // https://knowledge.hitachivantara.com/Documents/Management_Software/SVOS/9.8.6/Volume_Management_-_VSP_E_Series/Host_Attachment/14_Host_modes_and_host_mode_options
   host_mode_options = [90]
   host_mode         = "VMware"
-  #scsi_target_name = "iqn.1995-05.com.redhat:496799ba71"
-  #host_mode ="LINUX/IRIX" 
-  #lun {
-  #    ldev_id = 21
-  #    lun_id = 42
-  #}
-  #initiator {
-  #      initiator_name = "iqn.1995-05.com.redhat:496799ba72"
-  #      initiator_nickname = "test-iqn-nickname-301"
-  #}
+
 
 
 }
@@ -43,8 +34,8 @@ resource "hitachi_vsp_iscsi_target" "myiscsi" {
 
 ### Required
 
+- `iscsi_target_alias` (String) It's a iscsi target alias
 - `port_id` (String) Port id in which the resource to be created
-- `scsi_target_alias` (String) It's a iscsi target alias
 - `serial` (Number) Serial number of storage device is required
 
 ### Optional
@@ -52,14 +43,14 @@ resource "hitachi_vsp_iscsi_target" "myiscsi" {
 - `host_mode` (String) Host mode value to be given to create the resource
 - `host_mode_options` (List of Number) Host mode options can be passed to create the resource
 - `initiator` (Block Set) Initiator input for the resource (see [below for nested schema](#nestedblock--initiator))
+- `iscsi_target_name` (String) It's a iscsi target name
 - `iscsi_target_number` (Number) Resource will be created based on iscsi target number
 - `lun` (Block Set) Lun input for the resource (see [below for nested schema](#nestedblock--lun))
-- `scsi_target_name` (String) It's a iscsi target name
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
+- `iscsitarget` (Block List) This is output schema (see [below for nested schema](#nestedblock--iscsitarget))
 
 <a id="nestedblock--initiator"></a>
 ### Nested Schema for `initiator`
@@ -79,26 +70,26 @@ Optional:
 - `lun_id` (Number) Lun id to create the resource
 
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--iscsitarget"></a>
+### Nested Schema for `iscsitarget`
 
 Read-Only:
 
 - `host_mode` (String) It's host mode of the resource
 - `host_mode_options` (List of Number) It's a list of host mode options of the resource
-- `initiators` (Block List) It's a list of initiators of the resource (see [below for nested schema](#nestedblock--info--initiators))
+- `initiators` (Block List) It's a list of initiators of the resource (see [below for nested schema](#nestedblock--iscsitarget--initiators))
+- `iscsi_target_alias` (String) It's a iscsi target alias of the resource
 - `iscsi_target_id` (String) It's a iscsi target id of the resource
+- `iscsi_target_name` (String) It's a iscsi target name of the resource
 - `iscsi_target_number` (Number) It's a iscsi target number of the resource
 - `ldevs` (List of Number) It's a list of ldev ids of the resource
-- `lun_paths` (Block List) It's a list of lun_paths of the resource (see [below for nested schema](#nestedblock--info--lun_paths))
+- `lun_paths` (Block List) It's a list of lun_paths of the resource (see [below for nested schema](#nestedblock--iscsitarget--lun_paths))
 - `luns` (List of Number) It's a list of luns of the resource
 - `port_id` (String) It's a port id of the resource
-- `scsi_target_alias` (String) It's a iscsi target alias of the resource
-- `scsi_target_name` (String) It's a iscsi target name of the resource
 - `storage_serial_number` (Number) It's a storage serial number
 
-<a id="nestedblock--info--initiators"></a>
-### Nested Schema for `info.initiators`
+<a id="nestedblock--iscsitarget--initiators"></a>
+### Nested Schema for `iscsitarget.initiators`
 
 Read-Only:
 
@@ -106,8 +97,8 @@ Read-Only:
 - `initiator_nickname` (String) It's a initiator nickname of the resource
 
 
-<a id="nestedblock--info--lun_paths"></a>
-### Nested Schema for `info.lun_paths`
+<a id="nestedblock--iscsitarget--lun_paths"></a>
+### Nested Schema for `iscsitarget.lun_paths`
 
 Read-Only:
 

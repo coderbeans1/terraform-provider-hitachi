@@ -14,7 +14,7 @@ The following request obtains information about ports.
 
 ```terraform
 data "hitachi_vsp_storage_ports" "storageports" {
-  serial  = 30078
+  serial  = 12345
   port_id = "CL4-C"
 }
 
@@ -38,10 +38,10 @@ output "storageports" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
+- `ports` (Block List) This is output schema (see [below for nested schema](#nestedblock--ports))
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--ports"></a>
+### Nested Schema for `ports`
 
 Read-Only:
 

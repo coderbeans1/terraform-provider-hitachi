@@ -14,39 +14,24 @@ Using the specified port and iSCSI target, the following request gets the CHAP u
 
 ```terraform
 data "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user" {
-  serial              = 30078
+  serial              = 12345
   port_id             = "CL4-C"
   iscsi_target_number = 1
-  chap_user_type      = "initiator" # valid input value : "initiator", "target"
-  chap_user_name      = "dan"
+  chap_user_type      = "initiator" 
+  chap_user_name      = "chapuser1"
 
 }
-
-#data "hitachi_vsp_iscsi_chap_user" "my_iscsi_target_chap_user" {
-#   serial   = 30078
-#   port_id   = "CL4-C"
-#   iscsi_target_number   = 1
-#   chap_user_type = "target" # valid input value : "initiator", "target"
-#   chap_user_name = "rahul"
-
-#}
-
 
 output "my_iscsi_initiator_chap_user_output" {
   value = data.hitachi_vsp_iscsi_chap_user.my_iscsi_initiator_chap_user
 }
 
-
-#output "my_iscsi_target_chap_user_output" {
-#  value = data.hitachi_vsp_iscsi_chap_user.my_iscsi_target_chap_user
-#}
 data "hitachi_vsp_iscsi_chap_users" "my_iscsi_chap_users" {
-  serial              = 30078
+  serial              = 12345
   port_id             = "CL4-C"
   iscsi_target_number = 1
 
 }
-
 
 output "my_iscsi_chap_users_output" {
   value = data.hitachi_vsp_iscsi_chap_users.my_iscsi_chap_users
@@ -68,11 +53,11 @@ output "my_iscsi_chap_users_output" {
 
 ### Read-Only
 
+- `chap_user` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_user))
 - `id` (String) The ID of this resource.
-- `info` (List of Object) This is output schema (see [below for nested schema](#nestedatt--info))
 
-<a id="nestedatt--info"></a>
-### Nested Schema for `info`
+<a id="nestedatt--chap_user"></a>
+### Nested Schema for `chap_user`
 
 Read-Only:
 

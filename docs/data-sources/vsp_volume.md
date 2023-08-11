@@ -23,16 +23,15 @@ It returns the Lun information such as capacity, ports, paritygroup, pool etc.
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
+- `volume` (Block List) This is output schema (see [below for nested schema](#nestedblock--volume))
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--volume"></a>
+### Nested Schema for `volume`
 
 Read-Only:
 
 - `attributes` (List of String) List of attributes of volume
 - `clpr_id` (Number) It's a clpr id of volume
-- `data_reduction_mode` (String) It's data reduction mode of volume
 - `emulation_type` (String) It's a emulation type of volume
 - `free_capacity_in_mb` (Number) It shows free capacity of volume in MB
 - `is_alua_enabled` (Boolean) It checks whether alua is enabled on volume
@@ -44,7 +43,7 @@ Read-Only:
 - `num_ports` (Number) Number of ports available on volume
 - `paritygroup_id` (List of String) It's a parity group id of volume
 - `pool_id` (Number) It's a pool id of volume
-- `ports` (Block List) (see [below for nested schema](#nestedblock--info--ports))
+- `ports` (Block List) (see [below for nested schema](#nestedblock--volume--ports))
 - `resourcegroup_id` (Number) It's a resource group id of volume
 - `ss_id` (String) It's a ss id of volume
 - `status` (String) It's status of volume
@@ -52,8 +51,8 @@ Read-Only:
 - `total_capacity_in_mb` (Number) It shows total capacity of volume in MB
 - `used_capacity_in_mb` (Number) It shows used capacity of volume in MB
 
-<a id="nestedblock--info--ports"></a>
-### Nested Schema for `info.ports`
+<a id="nestedblock--volume--ports"></a>
+### Nested Schema for `volume.ports`
 
 Read-Only:
 

@@ -14,7 +14,7 @@ The following request gets information items such as the pool status, the pool u
 
 ```terraform
 data "hitachi_vsp_dynamic_pools" "dynamicpool" {
-  serial  = 30078
+  serial  = 12345
   pool_id = 45
 }
 
@@ -36,11 +36,11 @@ output "dynamicpool" {
 
 ### Read-Only
 
+- `dynamic_pools` (Block List) This is output schema (see [below for nested schema](#nestedblock--dynamic_pools))
 - `id` (String) The ID of this resource.
-- `info` (Block List) This is output schema (see [below for nested schema](#nestedblock--info))
 
-<a id="nestedblock--info"></a>
-### Nested Schema for `info`
+<a id="nestedblock--dynamic_pools"></a>
+### Nested Schema for `dynamic_pools`
 
 Read-Only:
 

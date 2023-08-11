@@ -23,11 +23,11 @@ Using the specified port and iSCSI target, the following request gets the CHAP u
 
 ### Read-Only
 
+- `chap_users` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_users))
 - `id` (String) The ID of this resource.
-- `info` (List of Object) This is output schema (see [below for nested schema](#nestedatt--info))
 
-<a id="nestedatt--info"></a>
-### Nested Schema for `info`
+<a id="nestedatt--chap_users"></a>
+### Nested Schema for `chap_users`
 
 Read-Only:
 
