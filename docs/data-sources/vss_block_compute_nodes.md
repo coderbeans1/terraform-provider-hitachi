@@ -13,6 +13,22 @@ Obtains a list of compute node information.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSS Block Compute Nodes Data Retrieval
+#
+# This section defines a data source block to fetch information about a specific
+# compute node from a Hitachi Virtual Storage System (VSS) using HashiCorp
+# Configuration Language (HCL).
+#
+# The data source block "hitachi_vss_block_compute_nodes" retrieves details
+# about a compute node associated with the provided parameters. This allows
+# you to access configuration and property information for the specified compute node.
+#
+# Customize the values of the parameters (vss_block_address, compute_node_name)
+# to match your environment, enabling you to retrieve information about the desired
+# compute node.
+#
+
 data "hitachi_vss_block_compute_nodes" "computenodes" {
   vss_block_address = "10.10.12.13"
   compute_node_name = "ComputeNode-RESTAPI123"
@@ -32,7 +48,7 @@ output "nodeoutput" {
 
 ### Optional
 
-- `compute_node_name` (String) The name of the compute node to be fetched
+- `compute_node_name` (String) The name  to be fetched
 
 ### Read-Only
 
@@ -44,15 +60,15 @@ output "nodeoutput" {
 
 Read-Only:
 
-- `id` (String) The id of the compute node
-- `nickname` (String) The name of the compute node
-- `number_of_paths` (Number) Number of ISCSI connection initiated to the compute node
+- `id` (String) ID
+- `nickname` (String) Nickname
+- `number_of_paths` (Number) Number of iSCSI connection initiated to the compute node
 - `number_of_volumes` (Number) The number of volumes attached in the compute node
-- `os_type` (String) The OS type of the compute node
-- `paths` (Block List) Path/ISCSI connections details for the compute node (see [below for nested schema](#nestedblock--compute_nodes--paths))
-- `port_details` (Block List) Port Details of the ISCSI connection (see [below for nested schema](#nestedblock--compute_nodes--port_details))
-- `total_capacity` (Number) The total capacity of the compute node in megabytes
-- `used_capacity` (Number) The used capacity of the compute node in megabytes
+- `os_type` (String) OS type
+- `paths` (Block List) Path/iSCSI connections details (see [below for nested schema](#nestedblock--compute_nodes--paths))
+- `port_details` (Block List) Port Details of the iSCSI connection (see [below for nested schema](#nestedblock--compute_nodes--port_details))
+- `total_capacity` (Number) Total capacity in MB
+- `used_capacity` (Number) Used capacity in MB
 
 <a id="nestedblock--compute_nodes--paths"></a>
 ### Nested Schema for `compute_nodes.paths`
@@ -60,7 +76,7 @@ Read-Only:
 Read-Only:
 
 - `hba_name` (String) Name of the HBA connection
-- `port_ids` (List of String) Port IDs of the ISCSI connection
+- `port_ids` (List of String) Port IDs of the iSCSI connection
 - `protocol` (String) Type of Protocol of the attached connection
 
 
@@ -69,7 +85,7 @@ Read-Only:
 
 Read-Only:
 
-- `iscsi_initiator` (String) Iscsi initiator name.
+- `iscsi_initiator` (String) iSCSI initiator name
 - `port_id` (String) Port ID of the connection
 - `port_name` (String) Port name of the connection
 

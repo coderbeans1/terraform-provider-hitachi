@@ -13,6 +13,22 @@ description: |-
 ## Example Usage
 
 ```terraform
+/*
+** Terraform Configuration for Hitachi Provider and VSS Block / SAN Storage System
+**
+** This Terraform configuration defines the required provider blocks for interacting with Hitachi
+** resources, specifically for VSS block and SAN storage system.
+**
+** The "required_providers" block specifies the version and source of the Hitachi provider to be used.
+** You can customize the version and source accordingly.
+**
+** The "provider" block configures the Hitachi provider with necessary authentication details for the
+** VSS block and SAN storage system.
+** Customize the values of "vss_block_address", "management_ip", "username", and "password" to match your
+** environment's configuration.
+**
+*/
+
 terraform {
   required_providers {
     hitachi = {
@@ -28,6 +44,7 @@ provider "hitachi" {
     username          = "username"
     password          = "password"
   }
+  
   san_storage_system {
     serial        = 12345
     management_ip = "10.10.11.12"
@@ -50,9 +67,9 @@ provider "hitachi" {
 
 Required:
 
-- `password` (String) Password of the REST API server on Virtual Storage Software block
-- `username` (String) Username of the REST API server on Virtual Storage Software block
-- `vss_block_address` (String) The host name or the IP address (IPv4) of the REST API server on Virtual Storage Software block.
+- `password` (String) Password of the Virtual Storage Software block
+- `username` (String) Username of the Virtual Storage Software block
+- `vss_block_address` (String) Host name or the IP address (IPv4) of Virtual Storage Software block.
 
 
 <a id="nestedblock--san_storage_system"></a>
@@ -62,5 +79,5 @@ Required:
 
 - `management_ip` (String) Management IP for VSP-5000 series
 - `password` (String) Password for VSP server
-- `serial` (Number) The serial number of the VSP storage server.
+- `serial` (Number) Serial number storage
 - `username` (String) Username for VSP server

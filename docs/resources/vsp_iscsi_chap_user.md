@@ -13,10 +13,22 @@ The following request sets the CHAP user name for the iSCSI target. Two types of
 ## Example Usage
 
 ```terraform
-// In Storage System, chap user is uniquely identified by serial, port_id, iscsi_target_number, chap_user_type and chap_user_name
-// In Terraform, chap user is uniquely identified by resource name "my_iscsi_initiator_chap_user"
-// The value of the mandatory input fields (serial, port_id, iscsi_target_number, chap_user_type and chap_user_name) 
-// cann't be changed one the resource has been created 
+//
+// Hitachi VSP iSCSI CHAP User Resource
+//
+// This section defines a Terraform resource block to create a Hitachi VSP iSCSI CHAP user.
+// The resource "hitachi_vsp_iscsi_chap_user" represents an iSCSI CHAP user on a Hitachi
+// Virtual Storage Platform (VSP) and allows you to manage its configuration using Terraform.
+//
+// In the storage system, a CHAP user is uniquely identified by the combination of the
+// serial, port_id, iscsi_target_number, chap_user_type, and chap_user_name. In Terraform,
+// the resource is uniquely identified by the resource name "my_iscsi_initiator_chap_user3".
+// The values of the mandatory input fields (serial, port_id, iscsi_target_number,
+// chap_user_type, and chap_user_name) cannot be changed once the resource has been created.
+//
+// Customize the values of the parameters (serial, port_id, iscsi_target_number,
+// chap_user_type, chap_user_name, chap_user_password) to match your desired CHAP user configuration.
+//
 
 resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
   serial              = 12345                
@@ -25,8 +37,6 @@ resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
   chap_user_type      = "initiator"          
   chap_user_name      = "chapuser"           
   chap_user_password  = "TopSecretForMyChap" 
- 
-
 }
 ```
 
@@ -35,13 +45,13 @@ resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
 
 ### Required
 
-- `chap_user_name` (String) The CHAP user name.
-- `chap_user_type` (String) Type of the CHAP user name
-			o target : The CHAP user name of the iSCSI target side
-			o initiator : The CHAP user name of the host bus adapter (iSCSI initiator) side
+- `chap_user_name` (String) CHAP user name.
+- `chap_user_type` (String) Type of CHAP user name
+			o target : CHAP user name of the iSCSI target side
+			o initiator : CHAP user name of the host bus adapter (iSCSI initiator) side
 - `iscsi_target_number` (Number) Target ID of the iSCSI target.
 - `port_id` (String) Port number
-- `serial` (Number) The serial number of the storage
+- `serial` (Number) Serial number of storage
 
 ### Optional
 
@@ -50,19 +60,21 @@ resource "hitachi_vsp_iscsi_chap_user" "my_iscsi_initiator_chap_user3" {
 
 ### Read-Only
 
-- `chap_user` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_user))
+- `chap_user` (Block List) This is chap user output (see [below for nested schema](#nestedblock--chap_user))
 - `id` (String) The ID of this resource.
 
-<a id="nestedatt--chap_user"></a>
+<a id="nestedblock--chap_user"></a>
 ### Nested Schema for `chap_user`
 
 Read-Only:
 
-- `chap_user_id` (String)
-- `chap_user_name` (String)
-- `chap_user_type` (String)
-- `iscsi_target_number` (Number)
-- `port_id` (String)
-- `storage_serial_number` (Number)
+- `chap_user_id` (String) Object ID for the CHAP user
+- `chap_user_name` (String) CHAP user name.
+- `chap_user_type` (String) Type of CHAP user name
+		o target : CHAP user name of the iSCSI target side
+		o initiator : CHAP user name of the host bus adapter (iSCSI initiator) side
+- `iscsi_target_number` (Number) Target ID of the iSCSI target.
+- `port_id` (String) Port number
+- `storage_serial_number` (Number) Serial number of storage
 
 

@@ -13,13 +13,27 @@ The following request creates a host group for the port. The host mode and the h
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSP Hostgroup Resource
+#
+# This section defines a Terraform resource block to create a Hitachi VSP hostgroup.
+# The resource "hitachi_vsp_hostgroup" represents a hostgroup on a Hitachi Virtual
+# Storage Platform (VSP) and allows you to manage its configuration using Terraform.
+#
+# Customize the values of the parameters (serial, hostgroup_number, hostgroup_name,
+# port_id, host_mode_options, host_mode) and the nested "lun" block to match your
+# desired hostgroup configuration.
+#
+# For detailed information about host_mode_options and host_mode, please refer to
+# the official Hitachi documentation:
+# https://knowledge.hitachivantara.com/Documents/Management_Software/SVOS/9.8.6/Volume_Management_-_VSP_E_Series/Host_Attachment/14_Host_modes_and_host_mode_options
+#
+
 resource "hitachi_vsp_hostgroup" "myhg" {
   serial           = 12345 
   hostgroup_number = 23
   hostgroup_name   = "TESTING-HOSTGROUP" 
   port_id          = "CL1-A"           
-  // For detail information about host_mode_options and host_mode, please look at the following link:
-  // https://knowledge.hitachivantara.com/Documents/Management_Software/SVOS/9.8.6/Volume_Management_-_VSP_E_Series/Host_Attachment/14_Host_modes_and_host_mode_options
   host_mode_options = [12, 32]
   host_mode         = "AIX"
  
@@ -28,7 +42,6 @@ resource "hitachi_vsp_hostgroup" "myhg" {
     ldev_id = 25
     lun     = 12
   }
-
 }
 ```
 
@@ -37,21 +50,21 @@ resource "hitachi_vsp_hostgroup" "myhg" {
 
 ### Required
 
-- `hostgroup_name` (String) The Host Group name to be specified to create the group
+- `hostgroup_name` (String) HostGroup name to be specified to create the group
 - `port_id` (String) The Port ID to be specified
-- `serial` (Number) The host group serial number need to be specified
+- `serial` (Number) Serial number of storage
 
 ### Optional
 
 - `host_mode` (String) The Host Mode to create the group
-- `host_mode_options` (List of Number) The number of host mode options to be given to create the group.
-- `hostgroup_number` (Number) The Host Group number to be specified
+- `host_mode_options` (List of Number) The number of host mode options to be given to create the group
+- `hostgroup_number` (Number) HostGroup number to be specified
 - `lun` (Block Set) Properties of Luns to create the group (see [below for nested schema](#nestedblock--lun))
-- `wwn` (Block Set) World wide name of the Host group (see [below for nested schema](#nestedblock--wwn))
+- `wwn` (Block Set) World wide name of hostGroup (see [below for nested schema](#nestedblock--wwn))
 
 ### Read-Only
 
-- `hostgroup` (Block List) Response data of the created host group (see [below for nested schema](#nestedblock--hostgroup))
+- `hostgroup` (Block List) Response data of the created hostGroup (see [below for nested schema](#nestedblock--hostgroup))
 - `id` (String) The ID of this resource.
 
 <a id="nestedblock--lun"></a>
@@ -59,8 +72,8 @@ resource "hitachi_vsp_hostgroup" "myhg" {
 
 Optional:
 
-- `ldev_id` (Number) Ldev ID of the Lun
-- `lun` (Number) Lun ID of the Lun
+- `ldev_id` (Number) Ldev ID of Lun
+- `lun` (Number) Lun ID of Lun
 
 
 <a id="nestedblock--wwn"></a>
@@ -68,8 +81,8 @@ Optional:
 
 Optional:
 
-- `host_wwn` (String) Name of the wwn resource
-- `wwn_nickname` (String) Nickname of the wwn resource
+- `host_wwn` (String) Name of wwn resource
+- `wwn_nickname` (String) Nickname of wwn resource
 
 
 <a id="nestedblock--hostgroup"></a>
@@ -77,25 +90,25 @@ Optional:
 
 Read-Only:
 
-- `hg_luns` (List of Number) Host group lun IDs
-- `host_mode` (String) Mode of the hostgroup
+- `hg_luns` (List of Number) HostGroup lun IDs
+- `host_mode` (String) Mode of hostgroup
 - `host_mode_options` (List of Number) The number of items in the host mode options list
-- `hostgroup_name` (String) Name of the HostGroup
-- `hostgroup_number` (Number) Created HostGroup number
-- `ldevs` (List of Number) The number of ldevs Ids in the host group
-- `lun_paths` (Block List) HostGroup lun paths with lun ids and ldev ids (see [below for nested schema](#nestedblock--hostgroup--lun_paths))
-- `port_id` (String) Assigned port ID of the HostGroup
-- `storage_serial_number` (Number) The serial number of the storage
-- `wwns` (List of String) WWNs list for the created host group.
-- `wwns_detail` (Block List) Details of wwns for the created host group including id and name (see [below for nested schema](#nestedblock--hostgroup--wwns_detail))
+- `hostgroup_name` (String) Name of hostGroup
+- `hostgroup_number` (Number) Created hostGroup number
+- `ldevs` (List of Number) The number of ldev IDs in hostGroup
+- `lun_paths` (Block List) HostGroup lun paths with lun IDs and ldev IDs (see [below for nested schema](#nestedblock--hostgroup--lun_paths))
+- `port_id` (String) Assigned port ID of hostGroup
+- `storage_serial_number` (Number) Serial number of storage
+- `wwns` (List of String) WWN list of hostGroup.
+- `wwns_detail` (Block List) Details of wwns for the created hostGroup including ID and name (see [below for nested schema](#nestedblock--hostgroup--wwns_detail))
 
 <a id="nestedblock--hostgroup--lun_paths"></a>
 ### Nested Schema for `hostgroup.lun_paths`
 
 Read-Only:
 
-- `hg_lun_id` (Number) Lun Paths Host group ID
-- `ldev_id` (Number) Lun Paths Ldev ID
+- `hg_lun_id` (Number) Lun Path hostGroup ID
+- `ldev_id` (Number) Lun Path Ldev ID
 
 
 <a id="nestedblock--hostgroup--wwns_detail"></a>

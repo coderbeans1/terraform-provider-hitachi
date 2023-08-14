@@ -13,12 +13,26 @@ The following request sets the CHAP user.
 ## Example Usage
 
 ```terraform
+//
+// Hitachi VSS Block Compute Port Resource
+//
+// This section defines a Terraform resource block to create a Hitachi VSS block compute port.
+// The resource "hitachi_vss_block_compute_port" represents a compute port on a Hitachi Virtual
+// Storage System (VSS) using its block interface and allows you to manage its configuration
+// using Terraform.
+//
+// Customize the values of the parameters (vss_block_address, name, authentication_settings,
+// target_chap_users) to match your desired compute port configuration.
+//
+// The "target_chap_users" parameter specifies a list of CHAP users that are associated with
+// this compute port for authentication purposes.
+//
+
 resource "hitachi_vss_block_compute_port" "mycomputeport" {
   vss_block_address = "10.10.12.13"
   name = "001-iSCSI-002"
   authentication_settings = "CHAP"
   target_chap_users = ["test_user7", "test_user9"]
- 
 }
 
 output "chapuser_association_with_computeport" {
@@ -42,18 +56,18 @@ output "chapuser_association_with_computeport" {
 
 ### Read-Only
 
-- `compute_port` (List of Object) Outputs information about the volume (see [below for nested schema](#nestedatt--compute_port))
+- `compute_port` (Block List) Outputs information about the volume (see [below for nested schema](#nestedblock--compute_port))
 - `id` (String) The ID of this resource.
 
-<a id="nestedatt--compute_port"></a>
+<a id="nestedblock--compute_port"></a>
 ### Nested Schema for `compute_port`
 
 Read-Only:
 
-- `chap_users` (List of Object) (see [below for nested schema](#nestedobjatt--compute_port--chap_users))
-- `port_auth_settings` (List of Object) (see [below for nested schema](#nestedobjatt--compute_port--port_auth_settings))
+- `chap_users` (List of Object) (see [below for nested schema](#nestedatt--compute_port--chap_users))
+- `port_auth_settings` (List of Object) Information about the authentication settings for the compute port for the target operation. (see [below for nested schema](#nestedatt--compute_port--port_auth_settings))
 
-<a id="nestedobjatt--compute_port--chap_users"></a>
+<a id="nestedatt--compute_port--chap_users"></a>
 ### Nested Schema for `compute_port.chap_users`
 
 Read-Only:
@@ -63,7 +77,7 @@ Read-Only:
 - `target_chap_user_name` (String)
 
 
-<a id="nestedobjatt--compute_port--port_auth_settings"></a>
+<a id="nestedatt--compute_port--port_auth_settings"></a>
 ### Nested Schema for `compute_port.port_auth_settings`
 
 Read-Only:

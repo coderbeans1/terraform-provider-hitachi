@@ -13,6 +13,20 @@ Obtains a list of volumes information.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSS Block Volumes Data Retrieval
+#
+# This section defines a data source block to fetch information about multiple volumes
+# from a Hitachi Virtual Storage System (VSS) using HashiCorp Configuration Language (HCL).
+#
+# The data source block "hitachi_vss_block_volumes" retrieves details about volumes
+# associated with the provided parameters. This allows you to access configuration
+# and property information for the specified volumes.
+#
+# Customize the value of the parameter (vss_block_address) to match your environment,
+# enabling you to retrieve information about the desired volumes.
+#
+
 data "hitachi_vss_block_volumes" "vssbvolumes" {
   vss_block_address = "10.10.12.13"
 }
@@ -36,59 +50,59 @@ output "volumeoutput" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `volumes` (List of Object) (see [below for nested schema](#nestedatt--volumes))
+- `volumes` (Block List) (see [below for nested schema](#nestedblock--volumes))
 
-<a id="nestedatt--volumes"></a>
+<a id="nestedblock--volumes"></a>
 ### Nested Schema for `volumes`
 
 Read-Only:
 
-- `compute_nodes` (List of Object) (see [below for nested schema](#nestedobjatt--volumes--compute_nodes))
-- `data_reduction_progress_rate` (Number)
-- `data_reduction_status` (String)
-- `full_allocated` (Boolean)
-- `id` (String)
-- `name` (String)
-- `nick_name` (String)
-- `number_of_connecting_servers` (Number)
-- `number_of_snapshots` (Number)
-- `pool_id` (String)
-- `pool_name` (String)
-- `protection_domain_id` (String)
-- `saving_effects` (List of Object) (see [below for nested schema](#nestedobjatt--volumes--saving_effects))
-- `saving_mode` (String)
-- `saving_setting` (String)
-- `snapshot_attribute` (String)
-- `snapshot_status` (String)
-- `status` (String)
-- `status_summary` (String)
-- `storage_controller_id` (String)
-- `total_capacity` (Number)
-- `used_capacity` (Number)
-- `volume_number` (Number)
-- `volume_type` (String)
+- `compute_nodes` (Block List) List of the compute nodes attached to the volume (see [below for nested schema](#nestedblock--volumes--compute_nodes))
+- `data_reduction_progress_rate` (Number) Data reduction progress rate of the volume
+- `data_reduction_status` (String) Data reduction status of the volume resource
+- `full_allocated` (Boolean) Allocation status of the volume resource
+- `id` (String) ID of the volume resource
+- `name` (String) Name of created the volume resource
+- `nick_name` (String) Nick name of created the volume resource
+- `number_of_connecting_servers` (Number) Number of connected servers to create the volume resource
+- `number_of_snapshots` (Number) Number of snapshots to create the volume resource
+- `pool_id` (String) Pool ID of created the volume resource
+- `pool_name` (String) Pool Name of created the volume resource
+- `protection_domain_id` (String) Protection Domain ID of the volume resource
+- `saving_effects` (Block List) Volumes saving effects information (see [below for nested schema](#nestedblock--volumes--saving_effects))
+- `saving_mode` (String) Saving mode of the volume resource
+- `saving_setting` (String) Setting of the volume resource
+- `snapshot_attribute` (String) Snapshot attribute of the volume
+- `snapshot_status` (String) Snapshot status of the volume resource
+- `status` (String) Status of the volume resource
+- `status_summary` (String) Status summary of the volume resource
+- `storage_controller_id` (String) Storage controller ID of the volume
+- `total_capacity` (Number) Total capacity of created the volume resource
+- `used_capacity` (Number) Used capacity of created the volume resource
+- `volume_number` (Number) Volume number of created the volume resource
+- `volume_type` (String) Volume type of the volume resource
 
-<a id="nestedobjatt--volumes--compute_nodes"></a>
+<a id="nestedblock--volumes--compute_nodes"></a>
 ### Nested Schema for `volumes.compute_nodes`
 
 Read-Only:
 
-- `id` (String)
-- `lun` (Number)
-- `name` (String)
-- `os_type` (String)
-- `total_capacity` (Number)
-- `used_capacity` (Number)
-- `volume_count` (Number)
+- `id` (String) ID of the compute node
+- `lun` (Number) LUN ID of the compute node
+- `name` (String) Name of the compute node
+- `os_type` (String) OS type of the compute node
+- `total_capacity` (Number) Total capacity of compute node
+- `used_capacity` (Number) Used capacity of the compute node
+- `volume_count` (Number) Total volume count attached to the compute node
 
 
-<a id="nestedobjatt--volumes--saving_effects"></a>
+<a id="nestedblock--volumes--saving_effects"></a>
 ### Nested Schema for `volumes.saving_effects`
 
 Read-Only:
 
-- `post_capacity_data_reduction` (Number)
-- `pre_capacity_data_reduction_without_system_data` (Number)
-- `system_data_capacity` (Number)
+- `post_capacity_data_reduction` (Number) Post-capacity data reduction without system data
+- `pre_capacity_data_reduction_without_system_data` (Number) Pre-capacity data reduction without system data
+- `system_data_capacity` (Number) System data capacity
 
 

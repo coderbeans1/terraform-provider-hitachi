@@ -13,15 +13,31 @@ Obtains the information about chap users.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSS Block iSCSI CHAP Users Data Retrieval
+#
+# This section defines multiple data source blocks to fetch iSCSI CHAP user information
+# from a Hitachi Virtual Storage System (VSS) using HashiCorp Configuration Language (HCL).
+#
+# Each data source block in this configuration retrieves details about iSCSI CHAP users
+# associated with the provided parameters. This enables you to access authentication
+# information for specific iSCSI CHAP users.
+#
+# Customize the values of the parameters (vss_block_address, target_chap_user) as needed
+# to match your environment, allowing you to retrieve information about the desired iSCSI CHAP users.
+#
+
+# Retrieve iSCSI CHAP user by ID
 data "hitachi_vss_block_iscsi_chap_users" "chap_user_by_id" {
-   vss_block_address   = "10.10.12.13"
-   target_chap_user = "a79c1a1d-2719-4e07-b800-faf9de73d0ae" //chap user id
+  vss_block_address   = "10.10.12.13"
+  target_chap_user = "a79c1a1d-2719-4e07-b800-faf9de73d0ae" //chap user id
 }
 
 output "id_output" {
   value = data.hitachi_vss_block_iscsi_chap_users.chap_user_by_id
 }
 
+# Retrieve iSCSI CHAP user by name
 data "hitachi_vss_block_iscsi_chap_users" "chap_user_by_name" {
   vss_block_address = "10.10.12.13"
   target_chap_user = "chapusername"
@@ -31,6 +47,7 @@ output "name_output" {
   value = data.hitachi_vss_block_iscsi_chap_users.chap_user_by_name
 }
 
+# Retrieve all iSCSI CHAP users
 data "hitachi_vss_block_iscsi_chap_users" "my_chap_users" {
   vss_block_address = "10.10.12.13"
 }
@@ -53,16 +70,18 @@ output "my_iscsi_chap_users_output" {
 
 ### Read-Only
 
-- `chap_users` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_users))
+- `chap_users` (Block List) This is output schema (see [below for nested schema](#nestedblock--chap_users))
 - `id` (String) The ID of this resource.
 
-<a id="nestedatt--chap_users"></a>
+<a id="nestedblock--chap_users"></a>
 ### Nested Schema for `chap_users`
 
 Read-Only:
 
-- `chap_user_id` (String)
-- `initiator_chap_user_name` (String)
-- `target_chap_user_name` (String)
+- `chap_user_id` (String) The ID of the CHAP user.
+- `initiator_chap_user_name` (String) CHAP user name used for CHAP authentication on the initiator port of the compute node in mutual CHAP authentication.
+		(1 to 223 chars) , must match /^[a-zA-Z0-9\.:@_\-\+=\[\]~ ]{1,223}$/
+- `target_chap_user_name` (String) CHAP user name used for CHAP authentication on the compute port (i.e., target side).
+		(1 to 223 chars) , must match /^[a-zA-Z0-9\.:@_\-\+=\[\]~ ]{1,223}$/
 
 

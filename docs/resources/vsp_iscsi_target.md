@@ -13,19 +13,28 @@ The following request creates a iSCSI target and the iSCSI name for the port. Th
 ## Example Usage
 
 ```terraform
+//
+// Hitachi VSP iSCSI Target Resource
+//
+// This section defines a Terraform resource block to create a Hitachi VSP iSCSI target.
+// The resource "hitachi_vsp_iscsi_target" represents an iSCSI target on a Hitachi
+// Virtual Storage Platform (VSP) and allows you to manage its configuration using Terraform.
+//
+// Customize the values of the parameters (serial, iscsi_target_number, iscsi_target_alias,
+// port_id, host_mode_options, host_mode) to match your desired iSCSI target configuration.
+// The comments provide a link for detailed information about host_mode_options and host_mode.
+//
+
 resource "hitachi_vsp_iscsi_target" "myiscsi" {
   serial              = 12345
   iscsi_target_number = 1
-  iscsi_target_alias   = "snewar-tgt1" 
+  iscsi_target_alias  = "snewar-tgt1" 
   port_id             = "CL4-C"  
 
-  // For detail information about host_mode_options and host_mode, please look at the following link:
+  // For detailed information about host_mode_options and host_mode, refer to:
   // https://knowledge.hitachivantara.com/Documents/Management_Software/SVOS/9.8.6/Volume_Management_-_VSP_E_Series/Host_Attachment/14_Host_modes_and_host_mode_options
   host_mode_options = [90]
   host_mode         = "VMware"
-
-
-
 }
 ```
 
@@ -34,23 +43,23 @@ resource "hitachi_vsp_iscsi_target" "myiscsi" {
 
 ### Required
 
-- `iscsi_target_alias` (String) It's a iscsi target alias
-- `port_id` (String) Port id in which the resource to be created
-- `serial` (Number) Serial number of storage device is required
+- `iscsi_target_alias` (String) iSCSI target alias
+- `port_id` (String) Port ID in which the resource to be created
+- `serial` (Number) Serial number of storage is required
 
 ### Optional
 
 - `host_mode` (String) Host mode value to be given to create the resource
 - `host_mode_options` (List of Number) Host mode options can be passed to create the resource
 - `initiator` (Block Set) Initiator input for the resource (see [below for nested schema](#nestedblock--initiator))
-- `iscsi_target_name` (String) It's a iscsi target name
-- `iscsi_target_number` (Number) Resource will be created based on iscsi target number
+- `iscsi_target_name` (String) iSCSI target name
+- `iscsi_target_number` (Number) Resource will be created based on iSCSI target number
 - `lun` (Block Set) Lun input for the resource (see [below for nested schema](#nestedblock--lun))
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `iscsitarget` (Block List) This is output schema (see [below for nested schema](#nestedblock--iscsitarget))
+- `iscsitarget` (Block List) This is iSCSI target output (see [below for nested schema](#nestedblock--iscsitarget))
 
 <a id="nestedblock--initiator"></a>
 ### Nested Schema for `initiator`
@@ -66,8 +75,8 @@ Optional:
 
 Optional:
 
-- `ldev_id` (Number) Ldev id to create the resource
-- `lun_id` (Number) Lun id to create the resource
+- `ldev_id` (Number) Ldev ID of lun
+- `lun_id` (Number) Lun ID of lun
 
 
 <a id="nestedblock--iscsitarget"></a>
@@ -75,26 +84,26 @@ Optional:
 
 Read-Only:
 
-- `host_mode` (String) It's host mode of the resource
-- `host_mode_options` (List of Number) It's a list of host mode options of the resource
-- `initiators` (Block List) It's a list of initiators of the resource (see [below for nested schema](#nestedblock--iscsitarget--initiators))
-- `iscsi_target_alias` (String) It's a iscsi target alias of the resource
-- `iscsi_target_id` (String) It's a iscsi target id of the resource
-- `iscsi_target_name` (String) It's a iscsi target name of the resource
-- `iscsi_target_number` (Number) It's a iscsi target number of the resource
-- `ldevs` (List of Number) It's a list of ldev ids of the resource
-- `lun_paths` (Block List) It's a list of lun_paths of the resource (see [below for nested schema](#nestedblock--iscsitarget--lun_paths))
-- `luns` (List of Number) It's a list of luns of the resource
-- `port_id` (String) It's a port id of the resource
-- `storage_serial_number` (Number) It's a storage serial number
+- `host_mode` (String) Type of host mode
+- `host_mode_options` (List of Number) List of host mode options
+- `initiators` (Block List) List of initiators (see [below for nested schema](#nestedblock--iscsitarget--initiators))
+- `iscsi_target_alias` (String) iSCSI target alias
+- `iscsi_target_id` (String) iSCSI target ID
+- `iscsi_target_name` (String) iSCSI target name
+- `iscsi_target_number` (Number) iSCSI target number
+- `ldevs` (List of Number) List of ldev IDs
+- `lun_paths` (Block List) List of lun_paths of the resource (see [below for nested schema](#nestedblock--iscsitarget--lun_paths))
+- `luns` (List of Number) List of luns
+- `port_id` (String) Port ID on storage
+- `storage_serial_number` (Number) Serial number of storage
 
 <a id="nestedblock--iscsitarget--initiators"></a>
 ### Nested Schema for `iscsitarget.initiators`
 
 Read-Only:
 
-- `initiator_name` (String) It's a initiator name of the resource
-- `initiator_nickname` (String) It's a initiator nickname of the resource
+- `initiator_name` (String) Initiator name
+- `initiator_nickname` (String) Initiator nickname
 
 
 <a id="nestedblock--iscsitarget--lun_paths"></a>
@@ -102,7 +111,7 @@ Read-Only:
 
 Read-Only:
 
-- `ldev_id` (Number) It's a ldev id of the resource
-- `lun_id` (Number) It's a lun id of the resource
+- `ldev_id` (Number) Ldev ID of lun
+- `lun_id` (Number) Lun ID of lun
 
 

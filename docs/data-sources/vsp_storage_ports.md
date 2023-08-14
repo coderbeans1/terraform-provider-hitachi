@@ -13,6 +13,21 @@ The following request obtains information about ports.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSP Storage Ports Data Retrieval
+#
+# This section defines a data source block to fetch information about a specific
+# storage port from a Hitachi Virtual Storage Platform (VSP) using HashiCorp
+# Configuration Language (HCL).
+#
+# The data source block "hitachi_vsp_storage_ports" retrieves details about a
+# storage port associated with the provided parameters. This allows you to access
+# configuration and property information for the specified storage port.
+#
+# Customize the values of the parameters (serial, port_id) to match your
+# environment, enabling you to retrieve information about the desired storage port.
+#
+
 data "hitachi_vsp_storage_ports" "storageports" {
   serial  = 12345
   port_id = "CL4-C"
@@ -28,17 +43,17 @@ output "storageports" {
 
 ### Required
 
-- `serial` (Number) Serial number of storage device is required
+- `serial` (Number) Serial number of storage
 
 ### Optional
 
-- `port_id` (String) Port id of the storage device
+- `port_id` (String) Port ID of the storage device
 - `total_port_count` (Number) Total number of ports on the storage device
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `ports` (Block List) This is output schema (see [below for nested schema](#nestedblock--ports))
+- `ports` (Block List) This is ports output (see [below for nested schema](#nestedblock--ports))
 
 <a id="nestedblock--ports"></a>
 ### Nested Schema for `ports`
@@ -46,13 +61,13 @@ output "storageports" {
 Read-Only:
 
 - `fabric_mode` (Boolean) Fabric mode of the storage device
-- `loop_id` (String) Loop id of the storage device
+- `loop_id` (String) Loop ID of the storage device
 - `lun_security_setting` (Boolean) Lun security setting of the storage device
 - `port_attributes` (List of String) List of port attributes of the storage device
 - `port_connection` (String) Port connection of the storage device
-- `port_id` (String) Port id of the storage device
+- `port_id` (String) Port ID
 - `port_speed` (String) Port speed of the storage device
-- `port_type` (String) port type of the storage device
-- `wwn` (String) Wwn of the port
+- `port_type` (String) Port type
+- `wwn` (String) WWN of the port
 
 

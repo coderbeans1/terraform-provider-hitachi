@@ -13,6 +13,20 @@ Obtains a list of storage ports information.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSS Block Storage Ports Data Retrieval
+#
+# This section defines a data source block to fetch information about a specific storage port
+# from a Hitachi Virtual Storage System (VSS) using HashiCorp Configuration Language (HCL).
+#
+# The data source block "hitachi_vss_block_storage_ports" retrieves details about a storage port
+# associated with the provided parameters. This allows you to access configuration and property
+# information for the specified storage port.
+#
+# Customize the values of the parameters (vss_block_address, port_name) to match your environment,
+# enabling you to retrieve information about the desired storage port.
+#
+
 data "hitachi_vss_block_storage_ports" "storagePorts" {
   vss_block_address = "10.10.12.13"
   port_name = "001-iSCSI-002"
@@ -37,7 +51,7 @@ output "storagePorts" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `ports` (Block List) This is output schema (see [below for nested schema](#nestedblock--ports))
+- `ports` (Block List) This is ports output (see [below for nested schema](#nestedblock--ports))
 
 <a id="nestedblock--ports"></a>
 ### Nested Schema for `ports`
@@ -53,11 +67,11 @@ Read-Only:
 - `por_speed_duplex` (String) Por speed duplex of port
 - `port_auth_settings` (Block List) Port auth settings information (see [below for nested schema](#nestedblock--ports--port_auth_settings))
 - `port_speed` (String) Port speed of port
-- `protection_domain_id` (String) Protection domain id of port
+- `protection_domain_id` (String) Protection domain ID of port
 - `protocol` (String) Protocol of port
 - `status` (String) Status of port
 - `status_summary` (String) status summary of port
-- `storage_node_id` (String) Storage node id of port
+- `storage_node_id` (String) Storage node ID of port
 - `type` (String) Type of port
 
 <a id="nestedblock--ports--fc_information"></a>
@@ -66,7 +80,7 @@ Read-Only:
 Read-Only:
 
 - `connection_type` (String) Connection type of FC port
-- `physical_wwn` (String) Wwn of port
+- `physical_wwn` (String) WWN of port
 - `sfp_data_transfer_rate` (String) Data transfer rate of FC port
 
 
@@ -75,14 +89,14 @@ Read-Only:
 
 Read-Only:
 
-- `delayed_ack` (Boolean) Delayed ack of Iscsi port
-- `ip_mode` (String) Ip mode of Iscsi port
+- `delayed_ack` (Boolean) Delayed ack of iSCSI port
+- `ip_mode` (String) IP mode of iSCSI port
 - `ipv4_information` (Block List) Ipv4 information (see [below for nested schema](#nestedblock--ports--iscsi_information--ipv4_information))
 - `ipv6_information` (Block List) Ipv6 information (see [below for nested schema](#nestedblock--ports--iscsi_information--ipv6_information))
-- `is_isns_client_enabled` (Boolean) Checks if is isns client enabled of Iscsi port
+- `is_isns_client_enabled` (Boolean) Checks if is isns client enabled of iSCSI port
 - `isns_servers` (Block List) Isns servers information (see [below for nested schema](#nestedblock--ports--iscsi_information--isns_servers))
-- `mac_address` (String) Mac address of Iscsi port
-- `mtu_size` (Number) Mtu size of Iscsi port
+- `mac_address` (String) MAC address of iSCSI port
+- `mtu_size` (Number) MTU size of iSCSI port
 
 <a id="nestedblock--ports--iscsi_information--ipv4_information"></a>
 ### Nested Schema for `ports.iscsi_information.ipv4_information`

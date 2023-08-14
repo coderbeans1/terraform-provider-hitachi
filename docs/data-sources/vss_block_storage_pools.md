@@ -13,6 +13,20 @@ Obtains a list of storage pool information.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSS Block Storage Pools Data Retrieval
+#
+# This section defines a data source block to fetch information about specific storage pools
+# from a Hitachi Virtual Storage System (VSS) using HashiCorp Configuration Language (HCL).
+#
+# The data source block "hitachi_vss_block_storage_pools" retrieves details about storage pools
+# associated with the provided parameters. This allows you to access configuration and property
+# information for the specified storage pools.
+#
+# Customize the values of the parameters (vssb_address, storage_pool_names) to match your
+# environment, enabling you to retrieve information about the desired storage pools.
+#
+
 data "hitachi_vss_block_storage_pools" "pool" {
   vssb_address = "10.10.11.12"
   storage_pool_names = ["SP01"]
@@ -37,7 +51,7 @@ output "pool" {
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `storage_pools` (Block List) This is output schema (see [below for nested schema](#nestedblock--storage_pools))
+- `storage_pools` (Block List) This is storage pools output (see [below for nested schema](#nestedblock--storage_pools))
 
 <a id="nestedblock--storage_pools"></a>
 ### Nested Schema for `storage_pools`
@@ -53,7 +67,7 @@ Read-Only:
 - `other_volume_capacity` (Number) Other volume capacity of pool
 - `pool_id` (String) Id of pool
 - `pool_name` (String) Name of pool
-- `protection_domain_id` (String) Protection domain id of pool
+- `protection_domain_id` (String) Protection domain ID of pool
 - `provisioned_volume_capacity` (Number) Provisioned volume capacity of pool
 - `rebuild_capacity_policy` (String) Rebuild capacity policy of pool
 - `rebuild_capacity_resource_setting` (Block List) Rebuild capacity resource setting information (see [below for nested schema](#nestedblock--storage_pools--rebuild_capacity_resource_setting))

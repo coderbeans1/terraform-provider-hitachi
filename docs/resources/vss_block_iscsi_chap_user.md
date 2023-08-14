@@ -13,6 +13,18 @@ The following request sets the CHAP user.
 ## Example Usage
 
 ```terraform
+//
+// Hitachi VSS Block iSCSI CHAP User Resource
+//
+// This section defines a Terraform resource block to create a Hitachi VSS block iSCSI CHAP user.
+// The resource "hitachi_vss_block_iscsi_chap_user" represents an iSCSI CHAP user on a Hitachi
+// Virtual Storage System (VSS) using its block interface and allows you to manage its configuration
+// using Terraform.
+//
+// Customize the values of the parameters (vss_block_address, target_chap_user_name,
+// target_chap_user_secret) to match your desired iSCSI CHAP user configuration.
+//
+
 resource "hitachi_vss_block_iscsi_chap_user" "my_chap_user" {
   vss_block_address       = "10.10.12.13"
   target_chap_user_name   = "targetchapuser"
@@ -45,16 +57,18 @@ output "chap_user_output" {
 
 ### Read-Only
 
-- `chap_users` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_users))
+- `chap_users` (Block List) This is chap users output (see [below for nested schema](#nestedblock--chap_users))
 - `id` (String) The ID of this resource.
 
-<a id="nestedatt--chap_users"></a>
+<a id="nestedblock--chap_users"></a>
 ### Nested Schema for `chap_users`
 
 Read-Only:
 
-- `chap_user_id` (String)
-- `initiator_chap_user_name` (String)
-- `target_chap_user_name` (String)
+- `chap_user_id` (String) The ID of the CHAP user.
+- `initiator_chap_user_name` (String) CHAP user name used for CHAP authentication on the initiator port of the compute node in mutual CHAP authentication.
+		(1 to 223 chars) , must match /^[a-zA-Z0-9\.:@_\-\+=\[\]~ ]{1,223}$/
+- `target_chap_user_name` (String) CHAP user name used for CHAP authentication on the compute port (i.e., target side).
+		(1 to 223 chars) , must match /^[a-zA-Z0-9\.:@_\-\+=\[\]~ ]{1,223}$/
 
 

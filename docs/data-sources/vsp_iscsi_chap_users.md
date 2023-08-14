@@ -19,23 +19,25 @@ Using the specified port and iSCSI target, the following request gets the CHAP u
 
 - `iscsi_target_number` (Number) Target ID of the iSCSI target.
 - `port_id` (String) Port number
-- `serial` (Number) The serial number of the storage
+- `serial` (Number) Serial number of storage
 
 ### Read-Only
 
-- `chap_users` (List of Object) This is output schema (see [below for nested schema](#nestedatt--chap_users))
+- `chap_users` (Block List) This is chap users output (see [below for nested schema](#nestedblock--chap_users))
 - `id` (String) The ID of this resource.
 
-<a id="nestedatt--chap_users"></a>
+<a id="nestedblock--chap_users"></a>
 ### Nested Schema for `chap_users`
 
 Read-Only:
 
-- `chap_user_id` (String)
-- `chap_user_name` (String)
-- `chap_user_type` (String)
-- `iscsi_target_number` (Number)
-- `port_id` (String)
-- `storage_serial_number` (Number)
+- `chap_user_id` (String) Object ID for the CHAP user
+- `chap_user_name` (String) CHAP user name.
+- `chap_user_type` (String) Type of CHAP user name
+		o target : CHAP user name of the iSCSI target side
+		o initiator : CHAP user name of the host bus adapter (iSCSI initiator) side
+- `iscsi_target_number` (Number) Target ID of the iSCSI target.
+- `port_id` (String) Port number
+- `storage_serial_number` (Number) Serial number of storage
 
 

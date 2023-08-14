@@ -13,6 +13,21 @@ It returns the storage device related information.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSP Storage System Data Retrieval
+#
+# This section defines a data source block to fetch information about a specific
+# storage system from a Hitachi Virtual Storage Platform (VSP) using HashiCorp
+# Configuration Language (HCL).
+#
+# The data source block "hitachi_vsp_storage" retrieves details about a storage
+# system associated with the provided parameters. This allows you to access
+# configuration and property information for the specified storage system.
+#
+# Customize the value of the parameter (serial) to match your environment,
+# enabling you to retrieve information about the desired storage system.
+#
+
 data "hitachi_vsp_storage" "s12345" {
   serial = 12345
 }
@@ -27,28 +42,28 @@ output "s12345" {
 
 ### Required
 
-- `serial` (Number) Serial number of storage device is required
+- `serial` (Number) Serial number of storage
 
 ### Read-Only
 
 - `id` (String) The ID of this resource.
-- `storage_system` (Block List) This is output schema (see [below for nested schema](#nestedblock--storage_system))
+- `storage_system` (Block List) This is storage system output (see [below for nested schema](#nestedblock--storage_system))
 
 <a id="nestedblock--storage_system"></a>
 ### Nested Schema for `storage_system`
 
 Read-Only:
 
-- `controller1_ip` (String) It's a storage controller1 ip
-- `controller2_ip` (String) It's a storage controller2 ip
-- `dkc_micro_code_version` (String) It's a dkc micro code version of storage
-- `free_capacity_in_mb` (Number) It's a free capacity of storage in MB
-- `management_ip` (String) It's a storage management ip
-- `storage_device_id` (String) It's a storage device id
-- `storage_device_model` (String) It's a storage device model
-- `storage_serial_number` (Number) It's a storage serial number
-- `svp_ip` (String) It's a storage svp ip
-- `total_capacity_in_mb` (Number) It's a total capacity of storage in MB
-- `used_capacity_in_mb` (Number) It's a used capacity of storage in MB
+- `controller1_ip` (String) Storage controller1 IP
+- `controller2_ip` (String) Storage controller2 IP
+- `dkc_micro_code_version` (String) DKC micro code version of storage
+- `free_capacity_in_mb` (Number) Free capacity in MB
+- `management_ip` (String) Storage management ip
+- `storage_device_id` (String) Storage device ID
+- `storage_device_model` (String) Storage device model
+- `storage_serial_number` (Number) Serial number of storage
+- `svp_ip` (String) Storage svp IP
+- `total_capacity_in_mb` (Number) Total capacity in MB
+- `used_capacity_in_mb` (Number) Used capacity in MB
 
 

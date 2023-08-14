@@ -13,6 +13,21 @@ The following request gets information about host group of the port.
 ## Example Usage
 
 ```terraform
+#
+# Hitachi VSP Hostgroup Data Retrieval
+#
+# This section defines a data source block and an output block to fetch
+# and expose information about a specific hostgroup from a Hitachi Virtual
+# Storage Platform (VSP) using HashiCorp Configuration Language (HCL).
+
+
+# The data source block "hitachi_vsp_hostgroup" retrieves details about a
+# particular hostgroup based on the provided parameters. The output block
+# "hostgroup" exports the retrieved hostgroup information for further use.
+#
+# Adjust the values of the parameters (serial, port_id, hostgroup_number)
+# according to your environment to fetch the desired hostgroup details.
+#
 data "hitachi_vsp_hostgroup" "hostgroup" {
   serial           = 12345
   port_id          = "CL1-A"
@@ -23,6 +38,13 @@ output "hostgroup" {
   value = data.hitachi_vsp_hostgroup.hostgroup
 }
 
+# The data source block "hitachi_vsp_hostgroups" fetches details about hostgroups
+# based on the provided parameters. The output block "hostgroups" exports the
+# retrieved hostgroup information for later use.
+#
+# Modify the values of the parameters (serial, port_ids) to suit your environment,
+# allowing you to retrieve information about the desired hostgroups.
+#
 data "hitachi_vsp_hostgroups" "hostgroups" {
   serial   = 12345
   port_ids = ["CL7-C", "CL7-A", "CL8-B", "CL9-C"]
@@ -39,12 +61,12 @@ output "hostgroups" {
 ### Required
 
 - `hostgroup_number` (Number) HostGroup number
-- `port_id` (String) PortId of the HostGroup
-- `serial` (Number) Serial number of the HostGroup
+- `port_id` (String) Port ID on storage
+- `serial` (Number) Serial number of storage
 
 ### Read-Only
 
-- `hostgroup` (Block List) Additional information of HostGroup (see [below for nested schema](#nestedblock--hostgroup))
+- `hostgroup` (Block List) This is hostGroup output (see [below for nested schema](#nestedblock--hostgroup))
 - `id` (String) The ID of this resource.
 
 <a id="nestedblock--hostgroup"></a>
@@ -52,25 +74,25 @@ output "hostgroups" {
 
 Read-Only:
 
-- `hg_luns` (List of Number) Host group lun IDs
-- `host_mode` (String) Mode of the hostgroup
+- `hg_luns` (List of Number) HostGroup lun IDs
+- `host_mode` (String) Mode of hostgroup
 - `host_mode_options` (List of Number) The number of items in the host mode options list
-- `hostgroup_name` (String) Name of the HostGroup
-- `hostgroup_number` (Number) Created HostGroup number
-- `ldevs` (List of Number) The number of ldevs Ids in the host group
-- `lun_paths` (Block List) HostGroup lun paths with lun ids and ldev ids (see [below for nested schema](#nestedblock--hostgroup--lun_paths))
-- `port_id` (String) Assigned port ID of the HostGroup
-- `storage_serial_number` (Number) The serial number of the storage
-- `wwns` (List of String) WWNs list for the created host group.
-- `wwns_detail` (Block List) Details of wwns for the created host group including id and name (see [below for nested schema](#nestedblock--hostgroup--wwns_detail))
+- `hostgroup_name` (String) Name of hostGroup
+- `hostgroup_number` (Number) Created hostGroup number
+- `ldevs` (List of Number) The number of ldev IDs in hostGroup
+- `lun_paths` (Block List) HostGroup lun paths with lun IDs and ldev IDs (see [below for nested schema](#nestedblock--hostgroup--lun_paths))
+- `port_id` (String) Assigned port ID of hostGroup
+- `storage_serial_number` (Number) Serial number of storage
+- `wwns` (List of String) WWN list of hostGroup.
+- `wwns_detail` (Block List) Details of wwns for the created hostGroup including ID and name (see [below for nested schema](#nestedblock--hostgroup--wwns_detail))
 
 <a id="nestedblock--hostgroup--lun_paths"></a>
 ### Nested Schema for `hostgroup.lun_paths`
 
 Read-Only:
 
-- `hg_lun_id` (Number) Lun Paths Host group ID
-- `ldev_id` (Number) Lun Paths Ldev ID
+- `hg_lun_id` (Number) Lun Path hostGroup ID
+- `ldev_id` (Number) Lun Path Ldev ID
 
 
 <a id="nestedblock--hostgroup--wwns_detail"></a>

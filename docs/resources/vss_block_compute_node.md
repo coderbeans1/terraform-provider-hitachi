@@ -13,21 +13,33 @@ Registers the information of the compute node.
 ## Example Usage
 
 ```terraform
+//
+// Hitachi VSS Block Compute Node Resource
+//
+// This section defines a Terraform resource block to create a Hitachi VSS block compute node.
+// The resource "hitachi_vss_block_compute_node" represents a compute node on a Hitachi Virtual
+// Storage System (VSS) using its block interface and allows you to manage its configuration
+// using Terraform.
+//
+// Customize the values of the parameters (vss_block_address, compute_node_name, os_type),
+// and the nested "fc_connection" blocks to match your desired compute node configuration.
+//
+// The "fc_connection" blocks define Fibre Channel connections for the compute node,
+// including the host WWNs (World Wide Names).
+//
+
 resource "hitachi_vss_block_compute_node" "mycompute" {
   vss_block_address = "10.10.12.13"
   compute_node_name = "ComputeNode-RESTAPI123"
   os_type = "VMware"
-  
 
   fc_connection {
     host_wwn = "60060e8107595326"
-
   }
 
   fc_connection {
     host_wwn = "90060e8107595325"
   }
-
 }
 
 output "computenodecreate" {
@@ -40,13 +52,13 @@ output "computenodecreate" {
 
 ### Required
 
-- `compute_node_name` (String) Name of the compute node to be created
+- `compute_node_name` (String) Name to be created
 - `vss_block_address` (String) The host name or the IP address (IPv4) of the REST API server on Virtual Storage Software block.
 
 ### Optional
 
 - `fc_connection` (Block Set) Details of Fiber channel connections (see [below for nested schema](#nestedblock--fc_connection))
-- `iscsi_connection` (Block Set) Details of ICSI connection to the compute node (see [below for nested schema](#nestedblock--iscsi_connection))
+- `iscsi_connection` (Block Set) Details of iSCSI connection to the compute node (see [below for nested schema](#nestedblock--iscsi_connection))
 - `os_type` (String) Type of the OS to be selected while creating the compute node like Linux, Windows,VmWare, etc.
 
 ### Read-Only
@@ -67,7 +79,7 @@ Optional:
 
 Optional:
 
-- `iscsi_initiator` (String) Name of the ICSI initiator
+- `iscsi_initiator` (String) Name of the iSCSI initiator
 - `port_names` (List of String) List of port names to connect to the compute node
 
 
@@ -76,15 +88,15 @@ Optional:
 
 Read-Only:
 
-- `id` (String) The id of the compute node
-- `nickname` (String) The name of the compute node
-- `number_of_paths` (Number) Number of ISCSI connection initiated to the compute node
+- `id` (String) ID
+- `nickname` (String) Nickname
+- `number_of_paths` (Number) Number of iSCSI connection initiated to the compute node
 - `number_of_volumes` (Number) The number of volumes attached in the compute node
-- `os_type` (String) The OS type of the compute node
-- `paths` (Block List) Path/ISCSI connections details for the compute node (see [below for nested schema](#nestedblock--compute_nodes--paths))
-- `port_details` (Block List) Port Details of the ISCSI connection (see [below for nested schema](#nestedblock--compute_nodes--port_details))
-- `total_capacity` (Number) The total capacity of the compute node in megabytes
-- `used_capacity` (Number) The used capacity of the compute node in megabytes
+- `os_type` (String) OS type
+- `paths` (Block List) Path/iSCSI connections details (see [below for nested schema](#nestedblock--compute_nodes--paths))
+- `port_details` (Block List) Port Details of the iSCSI connection (see [below for nested schema](#nestedblock--compute_nodes--port_details))
+- `total_capacity` (Number) Total capacity in MB
+- `used_capacity` (Number) Used capacity in MB
 
 <a id="nestedblock--compute_nodes--paths"></a>
 ### Nested Schema for `compute_nodes.paths`
@@ -92,7 +104,7 @@ Read-Only:
 Read-Only:
 
 - `hba_name` (String) Name of the HBA connection
-- `port_ids` (List of String) Port IDs of the ISCSI connection
+- `port_ids` (List of String) Port IDs of the iSCSI connection
 - `protocol` (String) Type of Protocol of the attached connection
 
 
@@ -101,7 +113,7 @@ Read-Only:
 
 Read-Only:
 
-- `iscsi_initiator` (String) Iscsi initiator name.
+- `iscsi_initiator` (String) iSCSI initiator name
 - `port_id` (String) Port ID of the connection
 - `port_name` (String) Port name of the connection
 
